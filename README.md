@@ -6,29 +6,25 @@
 
 ---
 
-## 设计理念
+## 用户工艺定位
 
-本工具严格剔除股价、补贴、并购等无架构决策价值的信息，只关注四件事：
+本技能围绕用户的**实际工艺平台**设计搜索策略：
 
-- **协议规范演进** — AMBA / UCIe / CXL / PCIe / HBM 版本变化与硅验证状态
-- **制程器件状态** — 先进节点良率、PDK 成熟度、封装工艺（含国产制程）
-- **EDA/IP 生态** — 工具链就绪度、IP 可用性、AI 赋能芯片设计
-- **学术架构创新** — 最新论文中的架构突破
+- **核心平台**：SMIC N+2（等效 7nm FinFET，DUV 多重曝光，量产）/ N+3（等效 5nm，研发中）
+- **海外先进工艺**（TSMC N2/Intel 18A/Samsung SF2）：仅供技术趋势追踪，每条发现必须附带"对 N+2/N+3 的可迁移启示"
+- **报告重心**：国产同代节点的良率提升、低功耗设计、DUV 多重曝光优化、设备/EDA 国产化
+- **成熟节点**：仅华虹/晶合等特色工艺按需追踪，不作为报告主体
 
 ---
 
 ## 核心原则：无变化不展开
 
-变化检测是**强制步骤**，不是可选项。每期报告生成前，先与 `references/protocol_versions.md` 中的基线比对：
+变化检测是**强制步骤**。每期生成前与 `references/protocol_versions.md` 基线比对：
 
 | 判定 | 含义 | 报告处理 |
 |------|------|----------|
 | **有实质更新** | 新版本 / 新硅验证 / 具体数字变化 / 新政策 | 详细展开 |
 | **无变化** | 与基线一致或无新进展 | 一句话带过 |
-
-**实质更新定义**：新版本发布、新硅验证完成、良率 ±5% 以上、产能变化、层数增加、重大政策变化。
-
-**不视为实质更新**：厂商营销博客、路线图重申无新里程碑、行业会议声明无实质产品进展。
 
 ---
 
@@ -36,7 +32,7 @@
 
 | 模式 | 耗时 | 搜索方式 | 产出 |
 |------|------|----------|------|
-| **完整版 (full)** | ~25 min | 四路并行 Agent 深度搜索 | `.md` + `.json` + `.html` PPT |
+| **完整版 (full)** | ~30 min | 五路并行 Agent 深度搜索 | `.md` + `.json` + `.html` PPT |
 | **快速版 (quick)** | ~10 min | 单路搜索 | `.md` 精简报告 |
 
 ---
@@ -46,18 +42,19 @@
 ```
 阶段零：加载协议基线 (protocol_versions.md)
     ↓
-阶段一：四路并行 Agent 搜索
-    ├── Agent A — 制程与器件（含国产制程/设备/出口管制）
-    ├── Agent B — 协议与互联（AMBA/UCIe/CXL/PCIe/HBM/Chiplet）
-    ├── Agent C — EDA 工具、半导体 IP、AI 赋能芯片设计
-    └── Agent D — 学术论文（arXiv / IEEE Xplore）
+阶段一：五路并行 Agent 搜索
+    ├── Agent A — 制程与器件（N+2/N+3 核心 + 海外追踪 + 设备/EDA/低功耗）
+    ├── Agent B — 协议与互联（AMBA/UCIe/CXL/PCIe/HBM/Chiplet/NoC/灵衢）
+    ├── Agent C — EDA 与 IP（双轨：海外追踪 + 国产 EDA 对 N+2/N+3 支持）
+    ├── Agent D — 学术论文（arXiv cs.AR/cs.ET/cs.CR 9 个方向）
+    └── Agent E — 专利搜索（7 个数据库 8 个分类）
     ↓
 阶段二：架构影响翻译层
     每条发现 → 架构影响 1-2 句 + 优先级 P0/P1/P2
     ↓
 阶段二点五：变化检测（内部流程，不写入报告）
     ↓
-阶段三：按六段式模板整合 Markdown 报告
+阶段三：按模板整合 Markdown 报告
     ↓
 阶段四：生成 JSON + 调用 guizang-ppt-skill 生成杂志风网页 PPT
 ```
@@ -67,22 +64,22 @@
 ## 覆盖维度
 
 ### 协议与互联
-AMBA CHI Issue H / AXI Issue L、UCIe 3.0、CXL 3.1/4.0、PCIe 6.0/7.0、JEDEC HBM4/HBM4E、OCP FCSA、中国 GB/T 46280 Chiplet 标准
+AMBA CHI Issue H / AXI Issue L、UCIe 3.0、CXL 4.0、PCIe 7.0、JEDEC HBM4/HBM4E、UALink 1.0、OCP FCSA、中国 GB/T 46280 Chiplet 标准、华为灵衢
 
-### 制程与器件
-TSMC N2/N2P/A16/A14/A13/A12、Intel 18A/18A-P、Samsung SF2、GAA 器件对比、CoWoS/SoIC/Hybrid Bonding/玻璃基板
+### 制程与器件（核心板块：N+2/N+3）
+SMIC N+2 量产状态（良率/PDK/DUV 多重曝光）、N+3 研发进展、N+2/N+3 低功耗器件特性、DUV 缺陷模式与良率优化。海外先进工艺追踪（TSMC N2/Intel 18A/Samsung SF2 + 可迁移启示）。先进封装（CoWoS/Hybrid Bonding/玻璃基板）
 
-### 国产制程专项
-SMIC N+1/N+2/N+3、YMTC 3D NAND Xtacking、CXMT DRAM/HBM、华虹特色工艺、国产设备/EDA、美国出口管制影响
+### 国产设备与 EDA
+国产光刻机（SMEE DUV）、刻蚀/薄膜沉积/离子注入/量测对 N+2 支持。华大九天/国微/芯华章/概伦对 N+2/N+3 PDK 的适配。美国出口管制影响。
 
-### 学术论文
-AI 加速器、Chiplet & NoC、神经形态计算、AI 赋能芯片设计（ML for EDA）、RISC-V 生态、后量子密码硬件
+### 学术论文（9 个方向）
+AI 加速器、Chiplet & NoC、神经形态计算、AI 赋能芯片设计、RISC-V 生态、后量子密码硬件、低功耗架构、功耗/能效建模、良率提升方案
 
-### EDA & IP 生态
-Synopsys/Cadence/Siemens 2nm 认证、ARM Neoverse CSS、RISC-V 商用 IP、HBM4 Controller IP、UCIe 3.0 PHY
+### EDA & IP 生态（双轨视角）
+海外：Synopsys/Cadence/Siemens 2nm 认证、DSO.ai/VSO.ai、HBM4 IP、UCIe 3.0 PHY。国产：华大九天 N+2 signoff 工具链、OpenROAD SMIC 支持、低功耗 IP 对 N+2 可用性
 
 ### AI 赋能芯片设计（重点板块）
-LLM 辅助 RTL 设计、AI 驱动综合与 PPA 优化（DSO.ai / Cerebrus）、AI 辅助物理设计/验证/DFT、Google/Amazon/NVIDIA 内部实践
+LLM 辅助 RTL 设计、AI 驱动综合与 PPA 优化、AI 辅助物理设计/验证/DFT、Synopsys.ai Copilots、Google/Amazon/NVIDIA 实践
 
 ---
 
@@ -98,25 +95,27 @@ LLM 辅助 RTL 设计、AI 驱动综合与 PPA 优化（DSO.ai / Cerebrus）、A
 
 ## 报告结构
 
-### 完整版（六段式）
+### 完整版（七段式）
 
-1. **架构师执行摘要** — 本周最影响芯片架构决策的 3 件事
+1. **架构师执行摘要** — 本周最影响架构决策的 3 件事
 2. **协议与互联标准演进** — 各协议版本状态 + 变化检测
-3. **制程与器件进展** — 先进节点 + 封装 + 国产制程
-4. **学术论文精选** — AI 加速器 / Chiplet / 神经形态 / AI 赋能设计 / RISC-V / PQC
-5. **设计工具链与 IP 生态** — EDA 2nm 就绪度 + AI 赋能进展 + IP 可用性
-6. **架构决策影响分析** — P0 行动项 + P1 技术储备 + P2 趋势跟踪 + 协议迁移路线图
+3. **制程与器件进展** — N+2/N+3 核心板块 + 海外追踪 + 低功耗
+4. **学术论文精选** — 9 个方向精选论文
+5. **设计工具链与 IP 生态** — 双轨 EDA + AI 赋能 + 低功耗 IP
+6. **最新专利动态** — 8 个分类 20 条专利
+7. **架构决策影响分析** — P0 行动项 + P1 技术储备 + P2 趋势 + 路线图
 
-### 快速版（八段式）
+### 快速版（九段式）
 
 1. 本周最重要的 3 件事
 2. 协议与互联更新
-3. 制程动态（含国产制程）
-4. AI 芯片架构突破
+3. SMIC N+2/N+3 国产先进工艺动态
+4. 海外先进工艺追踪（附可迁移启示）
 5. AI 赋能芯片设计案例
-6. 学术速览（3-5 篇）
-7. 架构师 P0 行动项
-8. 本周关键词
+6. 专利速览（3-5 条）
+7. 学术速览（3-5 篇）
+8. 架构师 P0 行动项
+9. 本周关键词
 
 ---
 
@@ -144,8 +143,10 @@ LLM 辅助 RTL 设计、AI 驱动综合与 PPA 优化（DSO.ai / Cerebrus）、A
 | 6 | Chiplet Marketplace / Converge Digest | Chiplet 生态 |
 | 7 | Tom's Hardware / AnandTech | 制程/架构深度分析 |
 | 8 | TrendForce / Omdia | 产能/价格数据 |
-| 9 | 中国半导体行业协会 / 芯思想 / 芯智讯 | 国产制程/政策 |
-| 10 | 半导体行业观察 / 集微网 | 国产替代进展 |
+| 9 | 中国半导体行业协会 / 芯思想 / 芯智讯 | SMIC 制程/良率/产能 |
+| 10 | 半导体行业观察 / 集微网 | 国产 EDA/设备/材料进展 |
+| 11 | SCMP / 南华早报 | 中国半导体产业动态 |
+| 12 | 大半导体产业网 / 摩尔精英 | SMIC N+2/N+3 PDK 状态 |
 
 ---
 
@@ -154,19 +155,17 @@ LLM 辅助 RTL 设计、AI 驱动综合与 PPA 优化（DSO.ai / Cerebrus）、A
 - **[guizang-ppt-skill](https://github.com/Aro1GG/claude-skills)** — 生成杂志风网页 PPT
 - **agent-browser** — 访问 SemiEngineering（该站封 WebFetch）
 - `references/protocol_versions.md` — 协议版本基线，变化检测对照基准
-- `assets/reference_template.md` — 六段式报告模板
+- `assets/reference_template.md` — 报告模板
 - `assets/trend_data_template.json` — JSON 数据模型
 
 ---
 
 ## 使用方式
 
-在 Claude Code 中安装此技能后：
-
 ```
 /semiconductor-daily           # 默认完整版
-/semiconductor-daily full      # 完整版（六段 + JSON + PPT）
-/semiconductor-daily quick     # 快速版（八段精简报告）
+/semiconductor-daily full      # 完整版（七段 + JSON + PPT）
+/semiconductor-daily quick     # 快速版（九段精简报告）
 ```
 
 ---
@@ -177,11 +176,12 @@ LLM 辅助 RTL 设计、AI 驱动综合与 PPA 优化（DSO.ai / Cerebrus）、A
 semiconductor-daily/
 ├── SKILL.md                          # 技能主文件
 ├── README.md
+├── .gitignore
 ├── assets/
 │   ├── reference_template.md         # 报告模板
 │   └── trend_data_template.json      # JSON 数据模型
 └── references/
-    └── protocol_versions.md          # 协议版本基线
+    └── protocol_versions.md          # 协议版本基线 + 专利追踪
 ```
 
 ---

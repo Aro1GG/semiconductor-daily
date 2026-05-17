@@ -1,0 +1,98 @@
+{
+  "date": "YYYY-MM-DD",
+  "hot_topics": [
+    {
+      "title": "话题标题（限20字内）",
+      "heat": 5,
+      "trend_tag": "P0行动/P1关注/P2跟踪",
+      "architecture_impact": "对芯片设计的具体影响（1句）",
+      "summary": "一句话摘要（限60字内）"
+    }
+  ],
+  "protocol_updates": [
+    {
+      "protocol": "AMBA CHI / AXI-L / UCIe / CXL / PCIe / HBM4",
+      "version": "最新版本号",
+      "change_summary": "关键变化（1句）",
+      "silicon_status": "投片/硅验证/量产",
+      "architecture_impact": "对设计的具体影响",
+      "urgency": "P0 / P1 / P2"
+    }
+  ],
+  "process_status": [
+    {
+      "node": "TSMC N2 / Intel 18A / Samsung SF2",
+      "production_status": "HVM / 试产 / 待量产",
+      "yield": "最新良率%",
+      "pdk_maturity": "0.0-1.0",
+      "eda_certified": "Synopsys/Cadence/Siemens 认证状态",
+      "phy_availability": "基础IP可用 / 部分可用 / 待发布"
+    }
+  ],
+  "domestic_process_status": [
+    {
+      "category": "逻辑芯片 / 存储芯片 / 设备材料 / 出口管制",
+      "company": "SMIC / CXMT / YMTC / 华虹 / 国产设备商",
+      "process_node": "工艺节点或等效对标",
+      "production_status": "量产 / 试产 / 研发中",
+      "yield": "最新良率%",
+      "capacity": "月产能（万片）",
+      "key_update": "最新关键进展（1-2句）",
+      "architecture_impact": "对国产替代/芯片设计的具体影响",
+      "urgency": "P0 / P1 / P2"
+    }
+  ],
+  "academic_papers": [
+    {
+      "title": "论文标题",
+      "paper_id": "arXiv:XXXX.XXXXX 或 ISSCC 2026 Session X.X",
+      "authors_institution": "作者/机构",
+      "core_finding": "核心发现（1句）",
+      "performance_numbers": "关键性能数字",
+      "architecture_impact": "架构意义（1句）",
+      "topic": "AI加速器/Chiplet/神经形态/AI赋能设计/RISC-V/PQC"
+    }
+  ],
+  "ai_chip_design_updates": [
+    {
+      "area": "LLM-RTL / AI-综合 / AI-物理设计 / AI-验证 / AI-DFT",
+      "latest_progress": "最新进展（1-2句）",
+      "company_or_paper": "来源公司/论文",
+      "benchmark": "benchmark 数据（如有）",
+      "architecture_impact": "对设计流程的影响"
+    }
+  ],
+  "technical_updates": [
+    {
+      "title": "技术更新标题（限45字内）",
+      "detail": "详细描述（1-2句）",
+      "architecture_implication": "架构含义"
+    }
+  ],
+  "ip_catalog": [
+    {
+      "ip_type": "HBM4 控制器 / UCIe 3.0 PHY / ARM 核 / RISC-V 核",
+      "vendor": "供应商",
+      "process_node": "可用工艺",
+      "status": "已投片 / 开发中 / 已发布",
+      "key_spec": "关键规格"
+    }
+  ],
+  "patent_updates": [
+    {
+      "patent_id": "US12XXXXXX / CNXXXXXXXXX",
+      "title": "专利标题",
+      "assignee": "受让人",
+      "category": "先进制程 / 先进封装 / 协议互连 / AI芯片 / 提高能效 / 功耗建模 / 良率提升 / 国产芯片",
+      "key_tech": "关键技术点（1句）",
+      "architecture_impact": "架构影响（1句）",
+      "source": "Google Patents / FreePatentsOnline / Justia / WIPO / EPO / CNIPA / KIPO"
+    }
+  ],
+  "insights": {
+    "tech_direction": "技术演进方向分析（2-3句）",
+    "design_methodology": "设计方法学建议（2-3句）",
+    "protocol_migration": "协议迁移路线图建议（2-3句）",
+    "opportunities": "技术投入机会（2-3句）"
+  }
+}

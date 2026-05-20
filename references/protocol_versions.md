@@ -107,6 +107,7 @@
 
 ## 更新历史
 
+- 2026-05-19: AMEC-SMIC 设备国产化从试产到规模量产; CXMT 利润激增+筹备IPO; AMD 2nm订单转Samsung; TSMC拒绝High-NA EUV; Arteris FlexGen AI NoC发布; Synopsys AgentEngineer+ASO.ai(7条AI产品线); Rambus HBM4E Controller(>4TB/s)+PCIe 7.0 Controller/Switch; Rambus PCIe 7.0 Controller/Switch/Retimer IP; CoWoS >98%良率确认; CXL 4.0规范已可下载
 - 2026-05-17: UCIe 3.0 正式发布时间修正为 2026.02; ARM CHI over UCIe 映射完成; Synopsys N2P UCIe 流片; HBM4 逻辑基底 Die (TSMC); HBM4E Samsung Q2 出样确认; 新增 UALink 1.0; Synopsys HBM4 IP 3nm 硅验证; SiFive P570 Gen 3 + $400M + NVIDIA; Synopsys.ai Copilots; 华虹被美国禁运(2026.05); SMIC 全球#3代工(5.2%); TSMC CoWoS 5.5x >98%良率; 专利基线首次填充 5 条
 - 2026-05-11: **重大更新** — PCIe 7.0 (128 GT/s) 发布; CXL 4.0 (128 GT/s) 发布跳过 3.1; TSMC N2/Intel 18A HVM 确认; TSMC A16 推迟至 2027; 新增 A13/A12/N2U 路线图; YMTC 294 层; SMIC 先进节点目标; Intel 18A-P VLSI 数据; Alphawave SoIC UCIe 3D tape-out; Rambus HBM4 Controller IP
 - 2026-04-27: 初始版本，建立版本基线
